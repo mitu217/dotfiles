@@ -33,6 +33,7 @@ nnoremap K 20k
 nnoremap L 10l
 nnoremap H 10h
 
+
 "ファイル処理関連
 set confirm		    "保存されていないファイルがあるときは終了前に保存確認
 set hidden		    "保存されていないファイルがあるときでも別のファイルを開くことができる
