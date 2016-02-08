@@ -86,15 +86,25 @@ rm -rf ~/.vim/bundle/neobundle.vim
 mkdir -p ~/.vim/bundle
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
-## Setup Ruby Rails
+
+## Setup Ruby eails
+brew install rbenv
+brew install ruby-build
+
+rm -rf ~/.rbenv/plugins/ruby-build
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 
-## Setup Node.js & Electron
-
+## Setup Node.js & electron
+brew install nodebrew
+nodebrew selfupdate
 
 
 ## Setup Jenkins
-#brew install Jenkins
+brew install jenkins
+ln -sfv /usr/local/opt/jenkins/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.jenkins.plist
+
 
 ## Update
 brew upgrade

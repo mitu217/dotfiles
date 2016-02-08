@@ -1,6 +1,10 @@
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ### load rbenv
-eval "$(rbenv init - zsh)"
+if which rbenv > /dev/null; then 
+  eval "$(rbenv init - zsh)"; 
+fi
 
 # エディタをVimに設定
 export EDITOR=vim 
