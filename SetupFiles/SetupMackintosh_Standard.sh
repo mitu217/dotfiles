@@ -99,7 +99,10 @@ nodebrew selfupdate
 ## Setup PHP
 brew install homebrew/php/phpbrew
 phpbrew init
-
+brew install php56-xdebug
+brew install composer
+brew install php-code-sniffer
+brew cask install phpstorm
 
 ## Update
 brew upgrade
