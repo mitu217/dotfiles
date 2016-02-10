@@ -95,6 +95,12 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
 brew install nodebrew
 nodebrew selfupdate
 
+
+## Setup PHP
+brew install homebrew/php/phpbrew
+phpbrew init
+
+
 ## Update
 brew upgrade
 

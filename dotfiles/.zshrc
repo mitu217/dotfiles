@@ -6,6 +6,10 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init - zsh)"; 
 fi
 
+### load phpbrew
+source ~/.phpbrew/bashrc
+
+
 # エディタをVimに設定
 export EDITOR=vim 
 # 文字コードをUTF-8に設定
