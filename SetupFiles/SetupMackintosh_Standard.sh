@@ -18,7 +18,6 @@ ln -s $(cd $(dirname $0);pwd)/dotfiles/.vimrc ~/.vimrc
 
 
 ## Install Homebrew & cask
-brew -h
 if type brew > /dev/null 2>&1; then
  	echo ""
 	echo "Homebrew is already installed."
@@ -60,8 +59,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 brew cask install alfred
 brew cask install android-studio
 brew cask install appcleaner
-brew cask install flash
-brew cask install google-japanese-ime
 brew cask install iterm2
 brew cask install java
 brew cask install refresh-finder
@@ -71,7 +68,6 @@ brew cask install the-unarchiver
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install xquartz
-brew cask install xtrafinder
 
 
 ## Change Login Shell
@@ -98,13 +94,6 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
 ## Setup Node.js & electron
 brew install nodebrew
 nodebrew selfupdate
-
-
-## Setup Jenkins
-brew install jenkins
-ln -sfv /usr/local/opt/jenkins/*.plist ~/Library/LaunchAgents
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.jenkins.plist
-
 
 ## Update
 brew upgrade
