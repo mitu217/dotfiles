@@ -109,6 +109,7 @@ set statusline+=%{fugitive#statusline()}
 " 見た目
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'aereal/vim-colors-japanesque'
 
 " html/CSS入力補完
 NeoBundle 'mattn/emmet-vim'
