@@ -1,5 +1,6 @@
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 ### load rbenv
 if which rbenv > /dev/null; then 
