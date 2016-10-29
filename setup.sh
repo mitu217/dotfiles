@@ -1,6 +1,77 @@
 #!/bin/sh -eu
 
 ####################
+# install function
+####################
+setup_macintosh () {
+  ## Homebrew & cask
+  if type brew > /dev/null 2>&1; then
+    echo "Homebrew is already installed."
+    echo "Updating Homebrew..."
+    brew prune
+    brew cleanup
+    brew doctor
+    brew update
+  else
+    echo "Installing Homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew tap caskroom/homebrew-versions
+    brew doctor
+    brew update
+  fi
+  
+  ## Install
+  brew install curl
+  brew install git
+  brew install openssl
+  brew install readline
+  brew install tmux
+  brew install tree
+  brew install wget
+  brew install zsh
+  brew install vim --with-lua
+  brew install rbenv
+  brew install ruby-build
+  brew install nodebrew
+  brew install phpbrew
+  brew install doxygen
+  brew install go
+
+  ## cask-install
+  brew cask install alfred
+  brew cask install android-studio
+  brew cask install appcleaner
+  brew cask install expandrive
+  brew cask install google-japanese-ime
+  brew cask install shiftit
+  brew cask install the-unarchiver
+  brew cask install vagrant
+  brew cask install virtualbox
+  brew cask install xquartz
+
+  ## Change Login Shell
+  chsh -s /bin/zsh
+
+  ## Neobundle
+  rm -rf ~/.vim/bundle/neobundle.vim
+  mkdir -p ~/.vim/bundle
+  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+  
+  exit
+
+  ## Setup Ruby eails
+  rm -rf ~/.rbenv/plugins/ruby-build
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+  ## Setup Node.js & electron
+  nodebrew selfupdate
+  
+  ## Setup PHP
+  phpbrew init
+}
+
+
+####################
 # Checking Option
 ####################
 
@@ -24,14 +95,31 @@ do
 done
 
 
-####################
-# Checking OS
-####################
+######################
+# Placement dotfiles
+######################
+if [ -e ~/.zshrc ]; then
+  rm ~/.zshrc
+fi
+echo 'source ~/dotfiles/.zshrc' > ~/.zshrc
+if [ -e ~/.tmux.conf ]; then
+  rm ~/.tmux.conf
+fi
+echo 'source ~/dotfiles/.tmux.conf' > ~/.tmux.conf
+if [ -e ~/.vimrc ]; then
+  rm ~/.vimrc
+fi
+echo 'source ~/dotfiles/.vimrc' > ~/.vimrc
+
+
+##################
+# Install Action
+##################
 if [ `uname` = "Darwin" ]; then
   echo "Start Initializing for Machintosh"
-  source ./SetupFiles/SetupMackintosh_Standard.sh
+  setup_macintosh
   if [ "$fflag" = "-f" ]; then
-    sh ./SetupFiles/SetupMacintosh_Extra.sh
+    setup_macintosh_expand
   fi
 elif [ `uname` = "Linux" ]; then
   ## Check what distribution

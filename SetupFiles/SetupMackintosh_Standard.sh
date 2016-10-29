@@ -4,18 +4,17 @@
 if [ -e ~/.zshrc ]; then
   rm ~/.zshrc
 fi
-ln -s $(cd $(dirname $0);pwd)/dotfiles/.zshrc ~/.zshrc
+echo 'source ~/dotfiles/.zshrc' > ~/.zshrc
 
 if [ -e ~/.tmux.conf ]; then
   rm ~/.tmux.conf
 fi
-ln -s $(cd $(dirname $0);pwd)/dotfiles/.tmux.conf ~/.tmux.conf
+echo 'source ~/dotfiles/.tmux.conf' > ~/.tmux.conf
 
 if [ -e ~/.vimrc ]; then
   rm ~/.vimrc
 fi
-ln -s $(cd $(dirname $0);pwd)/dotfiles/.vimrc ~/.vimrc
-
+echo 'source ~/dotfiles/.vimrc' > ~/.vimrc
 
 ## Install Homebrew & cask
 if type brew > /dev/null 2>&1; then
@@ -37,9 +36,9 @@ else
 	brew tap caskroom/homebrew-versions
 	brew doctor
 	brew update
-	brew install caskroom/cask/brew-cask
 fi
 
+exit
 
 #export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 

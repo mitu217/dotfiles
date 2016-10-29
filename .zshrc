@@ -1,3 +1,6 @@
+### brew-caskでインストールされたアプリケーションのディレクトリを変更
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
