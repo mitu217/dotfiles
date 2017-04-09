@@ -45,8 +45,7 @@ sudo apt-get install -y zsh
 sudo apt-get install -y Virtualbox
 sudo apt-get install -y Vagrant
 sudo apt-get install -y atom
-sudo apt-get install -y tilda
-
+suod apt-get install -y guake
 
 # ---------------
 # Setting Options
@@ -66,3 +65,7 @@ rm nodebrew
 # Change DirectoryName
 LANG=C xdg-user-dirs-gtk-update
 
+# plank
+sudo add-apt-repository ppa:ricotz/docky 
+sudo apt-get update 
+sudo apt-get install plank
