@@ -6,12 +6,6 @@
 # Update: 2017/03/20
 # --------------------
 
-# Check　Permission
-if [[ $EUID -ne 0 ]]; then
-    echo 'Please run it as an administrator.'
-    exit;
-fi
-
 # Copy dotfiles
 if [ -e ~/.zshrc ]; then
   rm ~/.zshrc

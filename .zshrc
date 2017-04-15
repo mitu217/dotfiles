@@ -13,6 +13,8 @@ fi
 ### load phpbrew
 source ~/.phpbrew/bashrc
 
+### golang
+export GOPATH=$HOME/go
 
 # エディタをVimに設定
 export EDITOR=vim 
