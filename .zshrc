@@ -72,7 +72,9 @@ zstyle ':completion:*' group-name ''
 # %nはログインユーザ名、%~はカレントディレクトリ
 # "%(?..%F{red}-%?-)" は終了コードが0以外なら赤色で表示
 # "%1(v|%F{yellow}%1v%F{green} |)" の部分がVCS情報 (psvarの長さが1以上なら黄色で表示)
-RPROMPT="%(?..%F{red}-%?-)%F{cyan}[%1(v|%F{yellow}%1v%F{cyan} |)%n:%~]%f"
+PROMPT='%F{cyan}[%n:%(3~,.../%2~,%~)%f%1(v|%F{yellow}(%1v)|)%F{cyan}]%f%% '
+RPROMPT="%(?..%F{red}-%?-)"
+
 
 #gitブランチ名表示
 autoload -Uz vcs_info
