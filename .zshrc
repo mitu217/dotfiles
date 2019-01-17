@@ -28,6 +28,6 @@ if [[ -f ~/.zplug/init.zsh ]]; then
 fi
 
 if [[ -f ~/.zshrc.local ]]; then
-  source ~/.zshrc.loacl
+  source ~/.zshrc.local
 fi
 
