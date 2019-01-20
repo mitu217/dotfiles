@@ -1,0 +1,19 @@
+tap 'homebrew/bundle'
+brew 'go', args: ['cross-compile-common']
+brew "goenv"
+brew 'git'
+brew "gibo"
+brew "tig"
+brew 'tmux'
+brew 'nodebrew'
+brew 'vim', args: ['with-lua', 'with-luajit']
+brew 'zsh', args: ['disable-etcdir']
+brew 'zsh-completions'
+
+tap 'caskroom/cask'
+cask '1password'
+cask 'appcleaner'
+cask 'google-japanese-ime'
+cask 'the-unarchiver'
+cask 'vagrant'
+cask 'virtualbox'

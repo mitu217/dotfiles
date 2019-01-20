@@ -4,6 +4,10 @@
 trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
 set -eu
 
+# Load vital library that is most important and
+# constructed with many minimal functions
+. "$DOTPATH"/etc/lib/vital.sh
+
 if [ -z "$DOTPATH" ]; then
     # shellcheck disable=SC2016
     echo '$DOTPATH not set' >&2

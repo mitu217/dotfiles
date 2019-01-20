@@ -19,35 +19,8 @@ setup_macintosh () {
     brew doctor
     brew update
   fi
-  
-  ## Install
-  brew install curl
-  brew install git
-  brew install openssl
-  brew install readline
-  brew install tmux
-  brew install tree
-  brew install wget
-  brew install zsh
-  brew install vim --with-lua
-  brew install rbenv
-  brew install ruby-build
-  brew install nodebrew
-  brew install phpbrew
-  brew install doxygen
-  brew install go
 
-  ## cask-install
-  brew cask install alfred
-  brew cask install android-studio
-  brew cask install appcleaner
-  brew cask install expandrive
-  brew cask install google-japanese-ime
-  brew cask install shiftit
-  brew cask install the-unarchiver
-  brew cask install vagrant
-  brew cask install virtualbox
-  brew cask install xquartz
+  ## Install
 
   ## Change Login Shell
   chsh -s /bin/zsh
@@ -56,7 +29,7 @@ setup_macintosh () {
   rm -rf ~/.vim/bundle/neobundle.vim
   mkdir -p ~/.vim/bundle
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-  
+
   exit
 
   ## Setup Ruby eails
@@ -65,7 +38,7 @@ setup_macintosh () {
 
   ## Setup Node.js & electron
   nodebrew selfupdate
-  
+
   ## Setup PHP
   phpbrew init
 }
