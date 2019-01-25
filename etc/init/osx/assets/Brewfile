@@ -9,6 +9,7 @@ brew 'nodebrew'
 brew 'vim', args: ['with-lua', 'with-luajit']
 brew 'zsh', args: ['disable-etcdir']
 brew 'zsh-completions'
+brew 'neovim'
 
 tap 'caskroom/cask'
 cask '1password'
