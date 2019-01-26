@@ -11,20 +11,6 @@ nnoremap K 20k
 nnoremap L 10l
 nnoremap H 10h
 
-" ------------------
-" NeoBundle settings
-" ------------------
-if has('vim_starting')
-   " 初回起動時のみruntimepathにneobundleのパスを指定する
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" 補完
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
 
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'

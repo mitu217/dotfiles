@@ -56,3 +56,48 @@ set history=10000                       "コマンドラインの履歴を10,000
 " Bell
 set visualbell t_vb= "ビープ音すべてを無効にする
 set noerrorbells "エラーメッセージの表示時にビープ音を鳴らさない
+
+" ========
+" dein.vim
+" ========
+if &compatible
+    set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('~/.vim')
+    call dein#begin('~/.vim')
+
+    " Let dein manage dein
+    " Required:
+    call dein#add('~/.vim/repos/github.com/Shougo/dein.vim')
+
+    " Add or remove your plugins here like this:
+    if filereadable(expand('~/.vimrc.dein'))
+        source ~/.vimrc.dein
+    endif
+
+    " Required:
+    call dein#end()
+    call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+filetype plugin indent on
+if dein#check_install()
+    call dein#install()
+endif
+
+" ============
+" local config
+" ============
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
+endif

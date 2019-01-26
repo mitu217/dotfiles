@@ -8,9 +8,14 @@ set -eu
 # constructed with many minimal functions
 . "$DOTPATH"/etc/lib/vital.sh
 
+if ! has "python3"; then
+    log_fail "error: python3 is not installed"
+    exit 1
+fi
+
 # Install dein.vim
-if [ -e ~/.vim/bundles ]; then
+if [ -e ~/.vim ]; then
     log_pass "dein.vim: already installed"
 else
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh)" -- ~/.vim/bundles
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh)" -- ~/.vim
 fi

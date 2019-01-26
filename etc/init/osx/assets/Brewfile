@@ -6,7 +6,8 @@ brew "gibo"
 brew "tig"
 brew 'tmux'
 brew 'nodebrew'
-brew 'vim', args: ['with-lua', 'with-luajit']
+brew 'python3'
+brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
 brew 'zsh', args: ['disable-etcdir']
 brew 'zsh-completions'
 brew 'neovim'
