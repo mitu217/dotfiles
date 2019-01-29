@@ -6,5 +6,5 @@
 install dotfiles.
 
 ```
-make install
+bash -c "$(curl -fsSL raw.githubusercontent.com/Mitu217/dotfiles/master/install.sh)"
 ```
