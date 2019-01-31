@@ -1,5 +1,8 @@
 # dotfiles
 
+### Target
+
+- Darwin
 
 ### Usage
 
