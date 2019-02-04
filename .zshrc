@@ -9,7 +9,7 @@ fi
 
 # tmux_automatically_attaches tmux session
 # automatically when you are in zsh
-if [[ -x ~/bin/tmuxx ]]; then
+if [[ -n ~/bin/tmuxx ]]; then
   ~/bin/tmuxx
 fi
 
