@@ -7,12 +7,6 @@ if [[ -n $VIMRUNTIME ]]; then
   return 0
 fi
 
-# tmux_automatically_attaches tmux session
-# automatically when you are in zsh
-if [[ -n ~/bin/tmuxx ]]; then
-  ~/bin/tmuxx
-fi
-
 if [[ -f ~/.zplug/init.zsh ]]; then
   export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
   source ~/.zplug/init.zsh

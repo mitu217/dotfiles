@@ -1,5 +1,0 @@
-#!/bin/bash
-
-if [[ ! -n $TMUX ]]; then
-  tmux new-session && exit
-fi

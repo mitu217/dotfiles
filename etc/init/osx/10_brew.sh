@@ -19,16 +19,15 @@ if has "brew"; then
     exit
 fi
 
-The script is dependent on ruby
+# The script is dependent on ruby
 if ! has "ruby"; then
     log_fail "error: require: ruby"
     exit 1
 fi
 
+# Install brew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-if has "brew"; then
-    brew doctor
-else
+if ! has "brew"; then
     log_fail "error: brew: failed to install"
     exit 1
 fi
