@@ -20,7 +20,7 @@ if has "brew"; then
 fi
 
 # Install dependencies
-sudo apt install build-essential curl file git
+sudo apt install -y build-essential curl file git
 
 # Install brew
 echo "export PATH=\"/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH\"" >> ~/.profile
