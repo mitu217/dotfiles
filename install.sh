@@ -45,7 +45,7 @@ echo ''
 # initialize
 echo '==> Start to initialize'
 echo ''
-DOTPATH=${DOT_DIRECTORY} sh ${DOT_DIRECTORY}/etc/init/init.sh
+DOTPATH=${DOT_DIRECTORY} bash ${DOT_DIRECTORY}/etc/init/init.sh
 echo ''
 echo $(tput setaf 2)initialize complete!. ✔︎$(tput sgr0)
 echo ''
