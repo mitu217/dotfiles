@@ -3,8 +3,8 @@
 set -e
 
 REMOTE_URL="git@github.com:Mitu217/dotfiles.git"
-DOTFILES_DIRECTORY="${HOME}/dotfiles"
-DOTFILES_TARBALL="https://github.com/Mitu217/dotfiles/tarball/master"
+DOT_DIRECTORY="${HOME}/dotfiles"
+DOT_TARBALL="https://github.com/Mitu217/dotfiles/tarball/master"
 DOTFILES=".zshrc .zshenv .vimrc .vimrc.dein"
 
 has() {
@@ -12,16 +12,16 @@ has() {
 }
 
 # download dotfiles
-if [ ! -d ${DOTFILES_DIRECTORY} ]; then
+if [ ! -d ${DOT_DIRECTORY} ]; then
   echo "==> Downloading dotfiles..."
   echo ''
-  mkdir ${DOTFILES_DIRECTORY}
+  mkdir ${DOT_DIRECTORY}
 
   if type "git" > /dev/null 2>&1; then
-    git clone --recursive "${REMOTE_URL}" "${DOTFILES_DIRECTORY}"
+    git clone --recursive "${REMOTE_URL}" "${DOT_}"
   else
-    wget -q ${DOTFILES_TARBALL} -O ${HOME}/dotfiles.tar.gz
-    tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOTFILES_DIRECTORY}
+    wget -q ${DOT_TARBALL} -O ${HOME}/dotfiles.tar.gz
+    tar -zxf ${HOME}/dotfiles.tar.gz --strip-components 1 -C ${DOT_DIRECTORY}
     rm -f ${HOME}/dotfiles.tar.gz
   fi
 
@@ -29,15 +29,24 @@ if [ ! -d ${DOTFILES_DIRECTORY} ]; then
   echo ''
 fi
 
-cd ${DOTFILES_DIRECTORY}
+cd ${DOT_DIRECTORY}
 
 # deploy dotfiles
 echo '==> Start to deploy dotfiles to home directory'
 echo ''
 for val in ${DOTFILES}
 do
-  ln -sfnv ${DOTFILES_DIRECTORY}/${val} ${HOME}/${val}
+  ln -sfnv ${DOT_DIRECTORY}/${val} ${HOME}/${val}
 done
 echo ''
 echo $(tput setaf 2)Deploy dotfiles complete!. ✔︎$(tput sgr0)
 echo ''
+
+# initialize
+echo '==> Start to initialize'
+echo ''
+DOTPATH=${DOT_DIRECTORY} sh ${DOT_DIRECTORY}/etc/init/init.sh
+echo ''
+echo $(tput setaf 2)initialize complete!. ✔︎$(tput sgr0)
+echo ''
+ 
