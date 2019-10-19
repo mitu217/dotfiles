@@ -3,6 +3,7 @@
 ### Target
 
 - Darwin
+- Ubuntu
 
 ### Usage
 
