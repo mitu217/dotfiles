@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.os "windows" }}
+
+winget install --id=AgileBits.1Password
+winget install --id=CPUID.CPU-Z
+winget install --id=TechPowerUp.GPU-Z
+winget install --id=Fork.Fork
+winget install --id=SublimeHQ.SublimeText.4
+winget install --id=Google.Chrome -v
+
+{{- end }}
