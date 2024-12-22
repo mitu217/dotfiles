@@ -1,0 +1,60 @@
+{{- if eq .chezmoi.os "windows" }}
+
+# Hide known file extensions
+Write-Output "Hide known file extensions..."
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Type DWord -Value 1 -Force
+
+# Hide hidden files
+Write-Output "Hide hidden files..."
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 2 -Force
+
+# Rollback explorer context menu 
+Write-Output "Rollback explorer context menu..."
+$key = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32"
+if (! (Test-Path ${key}) ) {
+  New-Item ${key} -Force
+}
+Set-ItemProperty ${key} -Name "(default)" -Value ""
+
+# Hide Search button / box
+Write-Host "Hiding Search Box / Button..."
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
+
+# Hide Task View button
+Write-Host "Hiding Task View button..."
+Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Type DWord -Value 0
+
+# Show all tray icons
+Write-Output "Showing all tray icons..."
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "EnableAutoTray" -Type DWord -Value 0
+
+# Hide icons on desktop
+Write-Output "Hide Recycle Bin shortcut on desktop..."
+If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu")) {
+    New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Force | Out-Null
+}
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{645FF040-5081-101B-9F08-00AA002F954E}" -Type DWord -Value 1
+If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel")) {
+    New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Force | Out-Null
+}
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{645FF040-5081-101B-9F08-00AA002F954E}" -Type DWord -Value 1 # Recycle Bin
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{2cc5ca98-6485-489a-920e-b3e88a6ccce3}" -Type DWord -Value 1 # Learn about this picture
+
+
+# Uninstall Widget
+Write-Host "Uninstall Widget..."
+winget uninstall "windows web experience pack"
+
+# Uninstall OneDrive
+Write-Host "Uninstall OneDrive..."
+winget uninstall microsoft.onedrive
+
+# Uninstall Copolot
+Write-Host "Uninstall Copilot..."
+winget uninstall microsoft.Copilot
+
+# Restart explorer
+Stop-Process -Name explorer -Force
+
+{{- end}}
+
