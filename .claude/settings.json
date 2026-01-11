@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "NO_COLOR=1 chezmoi verify --source=\"$CLAUDE_PROJECT_DIR\" 2>/dev/null || (echo 'chezmoi verify failed!' >&2; exit 2)"
+          }
+        ]
+      }
+    ]
+  }
+}

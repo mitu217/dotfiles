@@ -1,0 +1,22 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -eu
+
+# Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}
+
+echo "==> Running brew bundle..."
+
+if ! command -v brew &> /dev/null; then
+    echo "Error: Homebrew is not installed"
+    exit 1
+fi
+
+# Add Homebrew to PATH for Apple Silicon
+if [[ -d /opt/homebrew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+brew bundle --global --no-lock
+
+echo "brew bundle completed successfully"
+{{- end }}

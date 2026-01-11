@@ -1,0 +1,75 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -eu
+
+echo "==> Configuring macOS defaults..."
+
+# Show ~/Library directory
+chflags nohidden ~/Library
+
+# Show /Volumes directory
+sudo chflags nohidden /Volumes
+
+# Disable boot sound
+sudo nvram SystemAudioVolume=" "
+
+# Disable window animations
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# Remove tooltip delay
+defaults write -g NSInitialToolTipDelay -integer 0
+
+# Speed up dialog and window resize
+defaults write -g NSWindowResizeTime 0.1
+
+# Show all file extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Remove spring-load delay
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# Key repeat settings
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+# Speed up console window resize
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Improve Bluetooth audio quality
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Disable crash reporter
+defaults write com.apple.CrashReporter DialogType -string "none"
+
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
+
+# Don't create .DS_Store on network/USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Dock settings
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock mcx-expose-disabled -bool false
+
+# Finder settings
+defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Disable app verification dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Screenshot settings
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.screencapture type -string "png"
+
+# Terminal UTF-8 only
+defaults write com.apple.terminal StringEncodings -array 4
+
+echo "macOS defaults configured successfully"
+{{- end }}

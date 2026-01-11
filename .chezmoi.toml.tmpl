@@ -1,10 +1,6 @@
 # chezmoi configuration
 # https://www.chezmoi.io/reference/configuration-file/
 
-[data]
-    email = "{{ promptStringOnce . "email" "Email address" }}"
-    name = "{{ promptStringOnce . "name" "Full name" }}"
-
 [edit]
     command = "vim"
 

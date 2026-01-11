@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -eu
+
+echo "==> Setting up Vim (dein.vim)..."
+
+if [[ -d ~/.vim/repos/github.com/Shougo/dein.vim ]]; then
+    echo "dein.vim is already installed"
+    exit 0
+fi
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)" -- ~/.vim
+
+echo "dein.vim installed successfully"
+{{- end }}
