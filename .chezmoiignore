@@ -1,0 +1,22 @@
+# Files to ignore when applying dotfiles
+
+# Repository files
+README.md
+CLAUDE.md
+LICENSE
+Makefile
+install.sh
+
+# Old init scripts (kept for reference)
+etc/
+
+# Windows-only files on non-Windows
+{{- if ne .chezmoi.os "windows" }}
+run_once_before_install-packages-windows.bat.tmpl
+run_once_setup-windows.ps1.tmpl
+{{- end }}
+
+# macOS-only files on non-macOS
+{{- if ne .chezmoi.os "darwin" }}
+dot_config/ghostty/
+{{- end }}

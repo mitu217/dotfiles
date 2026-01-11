@@ -1,39 +1,45 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/core"
-brew "awscli"
-brew "docker"
-brew "docker-compose"
-brew "gibo"
+
+# Shell & Terminal
+brew "fish"
+brew "chezmoi"
+cask "ghostty"
+
+# Development Tools
 brew "git"
-brew "gnupg"
+brew "vim"
 brew "go"
 brew "goenv"
-brew "mas"
-brew "nodebrew"
-brew "opensc"
-brew "pinentry-mac"
 brew "pyenv"
 brew "python"
 brew "ruby"
-brew "vim"
+brew "nodebrew"
+
+# CLI Tools
+brew "awscli"
+brew "gibo"
 brew "wget"
-brew "ykman"
-brew "zsh"
+brew "mas"
+
+# Docker
+brew "docker"
+brew "docker-compose"
+cask "docker"
+
+# Applications
 cask "1password"
 cask "appcleaner"
-cask "clipy"
 cask "discord"
-cask "docker"
-cask "evernote"
 cask "fork"
 cask "goland"
 cask "google-chrome"
 cask "google-cloud-sdk"
 cask "slack"
-cask "sublime-text"
 cask "the-unarchiver"
 cask "visual-studio-code"
+
+# Mac App Store
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
