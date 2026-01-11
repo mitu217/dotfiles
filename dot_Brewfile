@@ -1,5 +1,6 @@
 # Shell & Terminal
 brew "zsh"
+brew "tmux"
 brew "chezmoi"
 cask "ghostty"
 
@@ -42,6 +43,7 @@ cask "docker-desktop"
 brew "mysql"
 
 # CLI Tools
+brew "bat"
 brew "direnv"
 brew "fzf"
 brew "wget"

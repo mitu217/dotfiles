@@ -21,6 +21,27 @@ if [[ -f ~/.zplug/init.zsh ]]; then
   zplug load
 fi
 
+# ghq + fzf + tmux integration
+# Select repository with fzf and create/attach tmux session
+function tm() {
+  local repo
+  repo=$(ghq list | fzf --preview "bat --color=always --style=plain $(ghq root)/{}/README.md 2>/dev/null || ls -la $(ghq root)/{}") || return
+
+  local session_name=$(basename "$repo" | tr '.' '-')
+  local repo_path="$(ghq root)/$repo"
+
+  if [[ -z "$TMUX" ]]; then
+    # Outside tmux: create or attach
+    tmux new-session -A -s "$session_name" -c "$repo_path"
+  else
+    # Inside tmux: switch or create session
+    if ! tmux has-session -t "$session_name" 2>/dev/null; then
+      tmux new-session -d -s "$session_name" -c "$repo_path"
+    fi
+    tmux switch-client -t "$session_name"
+  fi
+}
+
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
