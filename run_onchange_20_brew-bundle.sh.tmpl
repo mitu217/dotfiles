@@ -16,7 +16,10 @@ if [[ -d /opt/homebrew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew bundle --global --no-lock
+if ! brew bundle --global; then                                                                                                                              
+    echo "Warning: some brew bundle dependencies failed to install (e.g. casks requiring sudo)"                                                              
+    echo "You can install them manually later with: brew bundle --global"                                                                                    
+fi     
 
-echo "brew bundle completed successfully"
+echo "brew bundle completed"
 {{- end }}
