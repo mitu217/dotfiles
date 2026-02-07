@@ -9,6 +9,7 @@ if [[ -d ~/.vim/repos/github.com/Shougo/dein.vim ]]; then
     exit 0
 fi
 
+mkdir -p ~/.vim
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)" -- ~/.vim
 
 echo "dein.vim installed successfully"
