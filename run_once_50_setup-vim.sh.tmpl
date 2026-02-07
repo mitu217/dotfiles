@@ -10,7 +10,7 @@ if [[ -d ~/.vim/repos/github.com/Shougo/dein.vim ]]; then
 fi
 
 mkdir -p ~/.vim
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)" -- ~/.vim
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Shougo/dein-installer.vim/master/installer.sh)" -- --use-vim-config ~/.vim
 
 echo "dein.vim installed successfully"
 {{- end }}
