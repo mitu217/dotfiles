@@ -52,6 +52,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Dock settings
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock mcx-expose-disabled -bool false
+defaults write com.apple.dock tilesize -int 42
 # Reset Dock apps to Finder and Settings only
 defaults write com.apple.dock persistent-apps -array \
   '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Library/CoreServices/Finder.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>' \
