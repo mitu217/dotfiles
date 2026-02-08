@@ -18,6 +18,5 @@ run_once_setup-windows.ps1.tmpl
 
 # macOS-only files on non-macOS
 {{- if ne .chezmoi.os "darwin" }}
-dot_config/ghostty/
 .ssh/
 {{- end }}

@@ -7,7 +7,7 @@ macOS向けの開発環境設定を管理するdotfilesリポジトリです。[
 | カテゴリ | ツール |
 |---------|--------|
 | Shell | Zsh |
-| Terminal | Ghostty |
+| Terminal | iTerm2 |
 | Editor | Vim (dein.vim) |
 | Multiplexer | tmux |
 | Package Manager | Homebrew |
@@ -67,8 +67,6 @@ git log --show-signature -1              # 署名確認
 ├── dot_zshenv               # Zsh環境変数
 ├── dot_Brewfile             # Homebrewパッケージ定義
 ├── dot_gitconfig.tmpl       # Git設定（SSH署名・URL リライト）
-├── dot_config/              # ~/.config/ 配下の設定
-│   └── ghostty/             # Ghostty terminal設定
 ├── dot_tmux.conf            # tmux設定
 ├── dot_vimrc                # Vim設定
 ├── dot_vimrc.dein           # dein.vimプラグイン設定
