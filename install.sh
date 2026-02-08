@@ -22,6 +22,6 @@ fi
 
 # Initialize and apply dotfiles
 echo "==> Applying dotfiles..."
-chezmoi init --apply Mitu217
+chezmoi init --apply mitu217
 
 echo "==> Done!"
