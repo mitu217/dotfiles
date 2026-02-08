@@ -7,7 +7,7 @@ macOS向けの開発環境設定を管理するdotfilesリポジトリです。[
 | カテゴリ | ツール |
 |---------|--------|
 | Shell | Zsh |
-| Terminal | iTerm2 |
+| Terminal | Ghostty |
 | Editor | VS Code |
 | Multiplexer | tmux |
 | Package Manager | Homebrew |
@@ -67,6 +67,7 @@ git log --show-signature -1              # 署名確認
 ├── dot_Brewfile             # Homebrewパッケージ定義
 ├── dot_gitconfig.tmpl       # Git設定（SSH署名・URL リライト）
 ├── dot_tmux.conf            # tmux設定
+├── dot_config/ghostty/      # Ghostty設定
 ├── private_dot_ssh/         # SSH設定（1Password agent）
 │   └── config
 ├── run_once_*.sh.tmpl       # 初回セットアップスクリプト

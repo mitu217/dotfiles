@@ -2,7 +2,7 @@
 brew "zsh"
 brew "tmux"
 brew "chezmoi"
-cask "iterm2"
+cask "ghostty"
 
 # Editor
 brew "vim"
