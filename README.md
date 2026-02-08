@@ -8,7 +8,7 @@ macOS向けの開発環境設定を管理するdotfilesリポジトリです。[
 |---------|--------|
 | Shell | Zsh |
 | Terminal | iTerm2 |
-| Editor | Vim (dein.vim) |
+| Editor | VS Code |
 | Multiplexer | tmux |
 | Package Manager | Homebrew |
 | SSH / 署名 | 1Password SSH Agent |
@@ -29,7 +29,6 @@ curl -fsSL 'https://raw.githubusercontent.com/mitu217/dotfiles/master/install.sh
    - **name**, **email** を入力
    - 全パッケージインストール（1Password 含む）
    - macOS デフォルト設定
-   - Vim プラグインセットアップ
    - `~/.1password/agent.sock` シンボリックリンク作成
 
 この時点では git は HTTPS で動作します（1Password 未設定のため SSH 署名は無効）。
@@ -68,14 +67,11 @@ git log --show-signature -1              # 署名確認
 ├── dot_Brewfile             # Homebrewパッケージ定義
 ├── dot_gitconfig.tmpl       # Git設定（SSH署名・URL リライト）
 ├── dot_tmux.conf            # tmux設定
-├── dot_vimrc                # Vim設定
-├── dot_vimrc.dein           # dein.vimプラグイン設定
 ├── private_dot_ssh/         # SSH設定（1Password agent）
 │   └── config
 ├── run_once_*.sh.tmpl       # 初回セットアップスクリプト
 │   ├── 10_install-homebrew  # Homebrewインストール
 │   ├── 30_setup-1password   # 1Password SSH agentセットアップ
-│   ├── 50_setup-vim         # dein.vimセットアップ
 │   └── 60_macos-defaults    # macOSデフォルト設定
 ├── run_onchange_*.sh.tmpl   # 変更時実行スクリプト
 │   └── 20_brew-bundle       # Brewfileからパッケージインストール

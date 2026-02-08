@@ -5,7 +5,6 @@ brew "chezmoi"
 cask "iterm2"
 
 # Editor
-brew "vim"
 cask "visual-studio-code"
 cask "sublime-text"
 
