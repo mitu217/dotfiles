@@ -6,7 +6,6 @@ cask "iterm2"
 
 # Editor
 brew "vim"
-cask "cursor"
 cask "visual-studio-code"
 cask "sublime-text"
 
@@ -14,16 +13,8 @@ cask "sublime-text"
 brew "git"
 brew "gh"
 brew "ghq"
-brew "gibo"
 brew "pre-commit"
 cask "fork"
-
-# Version Management
-brew "goenv"
-brew "pyenv"
-brew "nodebrew"
-brew "nodenv"
-brew "rbenv"
 
 # Languages & Runtimes
 brew "go"
@@ -50,30 +41,14 @@ brew "wget"
 brew "mas"
 
 # Security
-brew "gnupg"
-brew "pinentry-mac"
-brew "ykman"
-brew "opensc"
-brew "hidapi"
 cask "1password"
 cask "1password-cli"
 
 # Applications
 cask "appcleaner"
-cask "clipy"
 cask "deepl"
-cask "discord"
-cask "evernote"
-cask "goland"
 cask "google-chrome"
-cask "google-drive"
-cask "meld"
-cask "slack"
-cask "the-unarchiver"
 
 # Android
 cask "android-studio"
 cask "android-commandlinetools"
-
-# Fonts
-cask "font-monaspace"
