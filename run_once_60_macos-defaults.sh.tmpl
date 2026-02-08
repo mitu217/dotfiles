@@ -68,5 +68,8 @@ defaults write com.apple.screencapture type -string "png"
 # Terminal UTF-8 only
 defaults write com.apple.terminal StringEncodings -array 4
 
+# Disable live conversion (Japanese input)
+defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
+
 echo "macOS defaults configured successfully"
 {{- end }}
