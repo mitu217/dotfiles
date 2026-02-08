@@ -1,6 +1,6 @@
 {{- $name := promptStringOnce . "name" "Git user name" -}}
 {{- $email := promptStringOnce . "email" "Git email address" -}}
-{{- $signingkey := promptStringOnce . "signingkey" "SSH signing key (ssh-ed25519 ...)" -}}
+{{- $signingkey := output "sh" "-c" "op item get 'GitHub(1Password/personal/signing)' --fields 'public key' 2>/dev/null || true" | trim -}}
 
 # chezmoi configuration
 # https://www.chezmoi.io/reference/configuration-file/

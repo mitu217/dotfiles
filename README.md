@@ -26,27 +26,27 @@ curl -fsSL 'https://raw.githubusercontent.com/mitu217/dotfiles/master/install.sh
 1. Homebrew インストール
 2. chezmoi インストール
 3. `chezmoi init --apply` で dotfiles を適用
-   - **name**, **email** を入力（**signingkey** は空のまま Enter）
+   - **name**, **email** を入力
    - 全パッケージインストール（1Password 含む）
    - macOS デフォルト設定
    - Vim プラグインセットアップ
    - `~/.1password/agent.sock` シンボリックリンク作成
 
-この時点では git は HTTPS で動作します。
+この時点では git は HTTPS で動作します（1Password 未設定のため SSH 署名は無効）。
 
-### Stage 2: 1Password SSH セットアップ（手動）
+### Stage 2: 1Password セットアップ + SSH 有効化
 
 1. **1Password** を開いてログイン
-2. **Settings > Developer > SSH Agent** を有効化
+2. **Settings > Developer** で以下を有効化:
+   - **SSH Agent**
+   - **Integrate with 1Password CLI**
 3. **GitHub** ([Settings > SSH and GPG keys](https://github.com/settings/keys)) に鍵を登録:
    - SSH 認証用の鍵 → **Authentication Key**
    - 署名用の鍵 → **Signing Key**
-
-### Stage 3: SSH 有効化
+4. chezmoi を再適用:
 
 ```bash
-chezmoi init        # signingkey を入力（name, email は保存済み）
-chezmoi apply       # gitconfig が SSH 有効版に更新される
+chezmoi apply       # op CLI で署名鍵を自動取得し、SSH 署名 + URL リライトが有効化
 ```
 
 確認:
@@ -92,7 +92,7 @@ git log --show-signature -1              # 署名確認
 2. `run_once_*` スクリプトが初回のみ実行される
 3. `run_onchange_*` スクリプトは対象ファイルが変更されたときに再実行される
 
-テンプレート（`.tmpl`）は chezmoi のデータ（`chezmoi init` 時に入力した name, email, signingkey）で展開されます。signingkey が空の場合、gitconfig の SSH 署名と URL リライトは無効になります。
+テンプレート（`.tmpl`）は chezmoi のデータで展開されます。name と email は `chezmoi init` 時に入力し、signingkey は `op` CLI（1Password）から自動取得されます。1Password 未設定時は signingkey が空になり、gitconfig の SSH 署名と URL リライトは無効になります。
 
 ## ライセンス
 
