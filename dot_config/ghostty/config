@@ -16,6 +16,8 @@ shell-integration = zsh
 window-padding-x = 8
 window-padding-y = 8
 window-decoration = true
+fullscreen = true
+macos-non-native-fullscreen = true
 
 # Cursor
 cursor-style = block
