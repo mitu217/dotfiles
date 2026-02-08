@@ -76,7 +76,6 @@ git log --show-signature -1              # 署名確認
 ├── run_onchange_*.sh.tmpl   # 変更時実行スクリプト
 │   └── 20_brew-bundle       # Brewfileからパッケージインストール
 ├── private_dot_claude/      # Claude Code設定（プライベート）
-├── .github/workflows/       # GitHub Actions CI
 └── CLAUDE.md                # Claude Code向けプロジェクト設定
 ```
 
