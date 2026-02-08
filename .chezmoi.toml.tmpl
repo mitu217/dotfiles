@@ -1,3 +1,7 @@
+{{- $name := promptStringOnce . "name" "Git user name" -}}
+{{- $email := promptStringOnce . "email" "Git email address" -}}
+{{- $signingkey := promptStringOnce . "signingkey" "SSH signing key (ssh-ed25519 ...)" -}}
+
 # chezmoi configuration
 # https://www.chezmoi.io/reference/configuration-file/
 
@@ -7,3 +11,8 @@
 [git]
     autoCommit = false
     autoPush = false
+
+[data]
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}
+    signingkey = {{ $signingkey | quote }}
