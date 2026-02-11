@@ -90,6 +90,9 @@ defaults -currentHost write -g com.apple.keyboard.modifiermapping.1278-33-0 -arr
 /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:60:value:parameters:2 1048576" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 /usr/libexec/PlistBuddy -c "Set :AppleSymbolicHotKeys:64:value:parameters:2 262144" ~/Library/Preferences/com.apple.symbolichotkeys.plist
 
+# Show Screen Mirroring in menu bar (always)
+defaults -currentHost write com.apple.controlcenter ScreenMirroring -int 18
+
 # Disable click desktop to show desktop
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
