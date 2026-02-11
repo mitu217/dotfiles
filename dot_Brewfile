@@ -18,6 +18,7 @@ cask "fork"
 
 # Languages & Runtimes
 brew "go"
+brew "rust"
 brew "uv"
 brew "yarn"
 

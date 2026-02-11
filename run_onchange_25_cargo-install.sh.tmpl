@@ -1,0 +1,22 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -eu
+
+# Cargo packages hash: {{ include "dot_cargo-packages" | sha256sum }}
+
+echo "==> Installing cargo packages..."
+
+if ! command -v cargo &> /dev/null; then
+    echo "Error: cargo is not installed"
+    exit 1
+fi
+
+while IFS= read -r package || [[ -n "$package" ]]; do
+    # Skip empty lines and comments
+    [[ -z "$package" || "$package" =~ ^# ]] && continue
+    echo "Installing $package..."
+    cargo install "$package"
+done < ~/.cargo-packages
+
+echo "cargo install completed"
+{{- end }}
