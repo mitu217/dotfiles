@@ -1,7 +1,9 @@
 # Shell & Terminal
 brew "zsh"
 brew "tmux"
+brew "mosh"
 brew "chezmoi"
+brew "starship"
 cask "ghostty"
 
 # Editor
@@ -17,7 +19,7 @@ brew "pre-commit"
 cask "fork"
 
 # Languages & Runtimes
-brew "go"
+brew "mise"
 brew "rust"
 brew "uv"
 brew "yarn"
@@ -49,6 +51,7 @@ cask "1password-cli"
 cask "appcleaner"
 cask "deepl"
 cask "google-chrome"
+cask "raycast"
 
 # Android
 cask "android-studio"
