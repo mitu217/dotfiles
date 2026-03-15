@@ -19,10 +19,10 @@ copy_key() {
     fi
 
     echo "Fetching: $item"
-    op item get "$item" --vault personal --fields private_key --reveal > "$private_path"
+    op item get "$item" --vault personal --fields private_key --reveal | tr -d '"' > "$private_path"
     chmod 600 "$private_path"
 
-    op item get "$item" --vault personal --fields public_key > "$public_path"
+    op item get "$item" --vault personal --fields public_key | tr -d '"' > "$public_path"
     chmod 644 "$public_path"
 
     echo "Saved: $private_path"
