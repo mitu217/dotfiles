@@ -7,22 +7,8 @@ if [[ -n $VIMRUNTIME ]]; then
   return 0
 fi
 
-if [[ -f ~/.zplug/init.zsh ]]; then
-  export ZPLUG_LOADFILE=~/.zsh/zplug.zsh
-  source ~/.zplug/init.zsh
-
-  if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-      echo; zplug install
-    fi
-    echo
-  fi
-  zplug load
-fi
-
-# ghq + fzf + tmux integration
-# Select repository with fzf and create/attach tmux session
+# ghq + fzf + tmux/cmux integration
+# Select repository with fzf and create/attach tmux session or cmux workspace
 function tm() {
   local repo
   repo=$(ghq list | fzf --preview "bat --color=always --style=plain $(ghq root)/{}/README.md 2>/dev/null || ls -la $(ghq root)/{}") || return
@@ -30,7 +16,26 @@ function tm() {
   local session_name=$(basename "$repo" | tr '.' '-')
   local repo_path="$(ghq root)/$repo"
 
-  if [[ -z "$TMUX" ]]; then
+  if [[ -n "$CMUX_WORKSPACE_ID" ]]; then
+    # Inside cmux: switch to existing workspace or create new one
+    local existing
+    existing=$(cmux list-workspaces --json 2>/dev/null \
+      | python3 -c "
+import json, sys
+try:
+    for w in json.load(sys.stdin):
+        if w.get('title') == '$session_name':
+            print(w.get('ref') or w.get('id', ''))
+            break
+except: pass
+" 2>/dev/null)
+    if [[ -n "$existing" ]]; then
+      cmux select-workspace --workspace "$existing"
+    else
+      cmux new-workspace --cwd "$repo_path"
+      cmux rename-workspace "$session_name"
+    fi
+  elif [[ -z "$TMUX" ]]; then
     # Outside tmux: create or attach
     tmux new-session -A -s "$session_name" -c "$repo_path"
   else
@@ -41,6 +46,12 @@ function tm() {
     tmux switch-client -t "$session_name"
   fi
 }
+
+# mise
+eval "$(mise activate zsh)"
+
+# Starship prompt
+eval "$(starship init zsh)"
 
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
