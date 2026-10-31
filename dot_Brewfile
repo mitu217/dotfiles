@@ -1,6 +1,5 @@
 # Shell & Terminal
 brew "zsh"
-brew "tmux"
 brew "mosh"
 brew "chezmoi"
 brew "starship"
@@ -8,14 +7,7 @@ cask "ghostty"
 
 # Editor
 brew "vim"
-brew "neovim"
 cask "visual-studio-code"
-cask "sublime-text"
-
-# Neovim dependencies
-brew "ripgrep"
-brew "fd"
-brew "lazygit"
 
 # Git
 brew "git"
