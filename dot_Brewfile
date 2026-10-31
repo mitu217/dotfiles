@@ -2,7 +2,6 @@
 brew "chezmoi"
 
 # Editor
-brew "vim"
 cask "visual-studio-code"
 
 # Git
