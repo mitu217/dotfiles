@@ -67,10 +67,6 @@ defaults -currentHost write com.apple.controlcenter ScreenMirroring -int 18
 # Disable click desktop to show desktop
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
-# Hide widgets on desktop and in Stage Manager
-defaults write com.apple.WindowManager StandardHideWidgets -bool true
-defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
-
 # Disable live conversion (Japanese input)
 defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
 
@@ -117,10 +113,11 @@ set_hotkey 60 1048576
 set_hotkey 64 262144
 
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-killall Dock Finder SystemUIServer WindowManager 2>/dev/null || true
+killall Dock Finder SystemUIServer 2>/dev/null || true
 
 echo "macOS defaults configured successfully"
 echo "Restart to apply modifier key remapping and keyboard shortcuts"
 echo "Manually turn off in System Settings > Displays: Automatically adjust brightness, True Tone"
 echo "Manually turn off in System Settings > Keyboard: Keyboard brightness, Adjust keyboard brightness in low light"
+echo "Manually remove desktop widgets: right-click each widget > Remove Widget"
 {{- end }}
