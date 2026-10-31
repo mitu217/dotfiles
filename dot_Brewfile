@@ -1,7 +1,5 @@
-# Shell & Terminal
+# Dotfiles
 brew "chezmoi"
-brew "starship"
-cask "ghostty"
 
 # Editor
 brew "vim"
@@ -10,7 +8,6 @@ cask "visual-studio-code"
 # Git
 brew "git"
 brew "gh"
-cask "fork"
 
 # Languages & Runtimes
 brew "mise"

@@ -1,9 +1,6 @@
 # mise
 eval "$(mise activate zsh)"
 
-# Starship prompt
-eval "$(starship init zsh)"
-
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi

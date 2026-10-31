@@ -23,6 +23,6 @@ This file is automatically loaded for all Claude Code sessions.
 ## Environment
 
 - Shell: Zsh
-- Terminal: Ghostty
+- Terminal: VS Code
 - Editor: Vim
 - Package Manager: Homebrew (macOS), chezmoi (dotfiles)
