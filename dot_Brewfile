@@ -9,10 +9,6 @@ cask "visual-studio-code"
 brew "git"
 brew "gh"
 
-# Languages & Runtimes
-brew "mise"
-brew "uv"
-
 # Infrastructure
 brew "awscli"
 cask "gcloud-cli"
