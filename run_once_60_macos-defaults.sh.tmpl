@@ -65,15 +65,23 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # Disable live conversion (Japanese input)
 defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
 
-# Remap modifier keys for HHKB-Hybrid (VendorID:1278 ProductID:33)
+# Remap modifier keys
 # Caps Lock -> Right Command, Control <-> Command (both sides)
-defaults -currentHost delete -g com.apple.keyboard.modifiermapping.1278-33-0 2>/dev/null || true
-defaults -currentHost write -g com.apple.keyboard.modifiermapping.1278-33-0 -array \
-  '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771303</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer></dict>' \
-  '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771300</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771303</integer></dict>' \
-  '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771303</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771300</integer></dict>' \
-  '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771299</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771296</integer></dict>' \
-  '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771296</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771299</integer></dict>'
+remap_modifiers() {
+    local device="$1"
+    defaults -currentHost delete -g "com.apple.keyboard.modifiermapping.$device" 2>/dev/null || true
+    defaults -currentHost write -g "com.apple.keyboard.modifiermapping.$device" -array \
+      '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771303</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771129</integer></dict>' \
+      '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771300</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771303</integer></dict>' \
+      '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771303</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771300</integer></dict>' \
+      '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771299</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771296</integer></dict>' \
+      '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771296</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771299</integer></dict>'
+}
+
+# HHKB-Hybrid (VendorID:1278 ProductID:33)
+remap_modifiers 1278-33-0
+# MacBook built-in keyboard (VendorID:0 ProductID:0)
+remap_modifiers 0-0-0
 
 # Keyboard shortcuts
 PLIST=~/Library/Preferences/com.apple.symbolichotkeys.plist
@@ -102,7 +110,9 @@ set_hotkey 64 262144
 # Set timezone to Asia/Tokyo
 sudo systemsetup -settimezone Asia/Tokyo
 
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 killall Dock Finder SystemUIServer 2>/dev/null || true
 
 echo "macOS defaults configured successfully"
+echo "Restart to apply modifier key remapping and keyboard shortcuts"
 {{- end }}
