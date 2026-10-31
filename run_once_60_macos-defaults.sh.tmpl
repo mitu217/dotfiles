@@ -112,9 +112,6 @@ set_hotkey 60 1048576
 # 64: Spotlight search -> Ctrl + Space
 set_hotkey 64 262144
 
-# Set timezone to Asia/Tokyo
-sudo ln -sf /var/db/timezone/zoneinfo/Asia/Tokyo /etc/localtime
-
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 killall Dock Finder SystemUIServer 2>/dev/null || true
 
