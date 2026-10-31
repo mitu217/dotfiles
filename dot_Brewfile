@@ -10,8 +10,6 @@ brew "git"
 brew "gh"
 
 # Infrastructure
-brew "awscli"
-cask "gcloud-cli"
 cask "tailscale-app"
 
 # Docker
