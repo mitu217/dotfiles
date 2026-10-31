@@ -29,11 +29,10 @@ curl -fsSL 'https://raw.githubusercontent.com/mitu217/dotfiles/master/install.sh
    - **name**, **email** を入力
    - 全パッケージインストール（1Password 含む）
    - macOS デフォルト設定
-   - `~/.1password/agent.sock` シンボリックリンク作成
 
-この時点では git は HTTPS で動作します（1Password 未設定のため SSH 署名は無効）。
+### Stage 2: 1Password セットアップ
 
-### Stage 2: 1Password セットアップ + SSH 有効化
+SSH 認証と git コミット署名はすべて 1Password SSH Agent 経由で行います。
 
 1. **1Password** を開いてログイン
 2. **Settings > Developer** で以下を有効化:
@@ -42,11 +41,6 @@ curl -fsSL 'https://raw.githubusercontent.com/mitu217/dotfiles/master/install.sh
 3. **GitHub** ([Settings > SSH and GPG keys](https://github.com/settings/keys)) に鍵を登録:
    - SSH 認証用の鍵 → **Authentication Key**
    - 署名用の鍵 → **Signing Key**
-4. chezmoi を再適用:
-
-```bash
-chezmoi apply       # op CLI で署名鍵を自動取得し、SSH 署名 + URL リライトが有効化
-```
 
 確認:
 
@@ -55,8 +49,6 @@ ssh -T git@github.com                    # SSH 接続テスト
 git commit --allow-empty -m "test"       # 署名テスト
 git log --show-signature -1              # 署名確認
 ```
-
-これで git が SSH 経由になり、コミットが自動的に署名されます。
 
 ## リポジトリ構造
 
@@ -72,7 +64,6 @@ git log --show-signature -1              # 署名確認
 │   └── config
 ├── run_once_*.sh.tmpl       # 初回セットアップスクリプト
 │   ├── 10_install-homebrew  # Homebrewインストール
-│   ├── 30_setup-1password   # 1Password SSH agentセットアップ
 │   └── 60_macos-defaults    # macOSデフォルト設定
 ├── run_onchange_*.sh.tmpl   # 変更時実行スクリプト
 │   └── 20_brew-bundle       # Brewfileからパッケージインストール
@@ -88,7 +79,7 @@ git log --show-signature -1              # 署名確認
 2. `run_once_*` スクリプトが初回のみ実行される
 3. `run_onchange_*` スクリプトは対象ファイルが変更されたときに再実行される
 
-テンプレート（`.tmpl`）は chezmoi のデータで展開されます。name と email は `chezmoi init` 時に入力し、signingkey は `op` CLI（1Password）から自動取得されます。1Password 未設定時は signingkey が空になり、gitconfig の SSH 署名と URL リライトは無効になります。
+テンプレート（`.tmpl`）は chezmoi のデータで展開されます。name と email は `chezmoi init` 時に入力します。
 
 ## ライセンス
 
