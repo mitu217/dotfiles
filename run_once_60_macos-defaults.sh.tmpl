@@ -35,6 +35,11 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Disable natural scrolling for mouse
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Enable tap to click on trackpad
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
 # Don't create .DS_Store on network/USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
@@ -116,4 +121,5 @@ killall Dock Finder SystemUIServer 2>/dev/null || true
 echo "macOS defaults configured successfully"
 echo "Restart to apply modifier key remapping and keyboard shortcuts"
 echo "Manually turn off in System Settings > Displays: Automatically adjust brightness, True Tone"
+echo "Manually turn off in System Settings > Keyboard: Keyboard brightness, Adjust keyboard brightness in low light"
 {{- end }}
