@@ -63,12 +63,10 @@ git log --show-signature -1              # 署名確認
 ├── private_dot_ssh/         # SSH設定（1Password agent）
 │   └── config
 ├── run_once_*.sh.tmpl       # 初回セットアップスクリプト
-│   ├── 10_install-homebrew  # Homebrewインストール
 │   └── 60_macos-defaults    # macOSデフォルト設定
 ├── run_onchange_*.sh.tmpl   # 変更時実行スクリプト
 │   └── 20_brew-bundle       # Brewfileからパッケージインストール
-├── private_dot_claude/      # Claude Code設定（プライベート）
-└── CLAUDE.md                # Claude Code向けプロジェクト設定
+└── private_dot_claude/      # Claude Code設定（プライベート）
 ```
 
 ## 仕組み
