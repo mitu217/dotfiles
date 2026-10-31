@@ -49,6 +49,13 @@ git commit --allow-empty -m "test"       # 署名テスト
 git log --show-signature -1              # 署名確認
 ```
 
+### Stage 3: 手動設定
+
+1. 再起動（修飾キーとキーボードショートカットの反映）
+2. **System Settings > ディスプレイ** で以下をオフ:
+   - **輝度を自動調整**
+   - **True Tone**
+
 ## リポジトリ構造
 
 ```
@@ -56,6 +63,7 @@ git log --show-signature -1              # 署名確認
 ├── dot_zshrc                # Zsh設定
 ├── dot_Brewfile             # Homebrewパッケージ定義
 ├── dot_gitconfig.tmpl       # Git設定（SSH署名・URL リライト）
+├── dot_config/git/          # SSH署名の検証用 allowed_signers
 ├── private_dot_ssh/         # SSH設定（1Password agent）
 │   └── config
 ├── run_once_*.sh.tmpl       # 初回セットアップスクリプト
@@ -73,7 +81,7 @@ git log --show-signature -1              # 署名確認
 2. `run_once_*` スクリプトが初回のみ実行される
 3. `run_onchange_*` スクリプトは対象ファイルが変更されたときに再実行される
 
-テンプレート（`.tmpl`）は chezmoi のデータで展開されます。name と email は `chezmoi init` 時に入力します。
+テンプレート（`.tmpl`）は chezmoi のデータで展開されます。name と email は `chezmoi init` 時に入力します。署名用の公開鍵は `.chezmoi.toml.tmpl` に定義しており、変更した場合は `chezmoi init && chezmoi apply` で反映します。
 
 ## ライセンス
 
