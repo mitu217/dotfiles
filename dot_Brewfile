@@ -6,7 +6,6 @@ brew "vim"
 cask "visual-studio-code"
 
 # Git
-brew "git"
 brew "gh"
 
 # Infrastructure
