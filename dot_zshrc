@@ -1,12 +1,3 @@
-umask 022
-limit coredumpsize 0
-bindkey -d
-
-# Return if zsh is called from Vim
-if [[ -n $VIMRUNTIME ]]; then
-  return 0
-fi
-
 # ghq + fzf + tmux/cmux integration
 # Select repository with fzf and create/attach tmux session or cmux workspace
 function tm() {
