@@ -10,17 +10,14 @@ chflags nohidden ~/Library
 # Show /Volumes directory
 sudo chflags nohidden /Volumes
 
-# Disable boot sound
-sudo nvram SystemAudioVolume=" "
-
 # Disable window animations
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
 # Remove tooltip delay
 defaults write -g NSInitialToolTipDelay -integer 0
 
-# Speed up dialog and window resize
-defaults write -g NSWindowResizeTime 0.1
+# Speed up window resize
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Show all file extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -30,49 +27,43 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
 # Remove spring-load delay
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
-defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
 # Key repeat settings
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-# Speed up console window resize
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-
-# Improve Bluetooth audio quality
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
-
-# Disable crash reporter
-defaults write com.apple.CrashReporter DialogType -string "none"
+# Disable natural scrolling for mouse
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Don't create .DS_Store on network/USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Dock settings
+defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
-defaults write com.apple.dock mcx-expose-disabled -bool false
 defaults write com.apple.dock tilesize -int 42
 defaults write com.apple.dock show-recents -bool false
 # Reset Dock apps to Settings only (Finder is always shown)
 defaults write com.apple.dock persistent-apps -array \
   '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file:///System/Applications/System%20Settings.app/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>'
-killall Dock
 
 # Finder settings
-defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-# Disable app verification dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-
-# Screenshot settings
+# Disable screenshot shadow
 defaults write com.apple.screencapture disable-shadow -bool true
-defaults write com.apple.screencapture type -string "png"
 
-# Terminal UTF-8 only
-defaults write com.apple.terminal StringEncodings -array 4
+# Show Screen Mirroring in menu bar (always)
+defaults -currentHost write com.apple.controlcenter ScreenMirroring -int 18
+
+# Disable click desktop to show desktop
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# Disable live conversion (Japanese input)
+defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
 
 # Remap modifier keys for HHKB-Hybrid (VendorID:1278 ProductID:33)
 # Caps Lock -> Right Command, Control <-> Command (both sides)
@@ -84,55 +75,34 @@ defaults -currentHost write -g com.apple.keyboard.modifiermapping.1278-33-0 -arr
   '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771299</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771296</integer></dict>' \
   '<dict><key>HIDKeyboardModifierMappingDst</key><integer>30064771296</integer><key>HIDKeyboardModifierMappingSrc</key><integer>30064771299</integer></dict>'
 
-# 設定ファイルのパスを変数に格納
+# Keyboard shortcuts
 PLIST=~/Library/Preferences/com.apple.symbolichotkeys.plist
 
-# --------------------------------------------------
-# Key 60: 入力ソース切り替え -> Cmd + Space (1048576)
-# --------------------------------------------------
-# 一度既存の古い構造を削除してエラーを回避
-/usr/libexec/PlistBuddy -c "Delete :AppleSymbolicHotKeys:60" $PLIST 2>/dev/null
+set_hotkey() {
+    local id="$1"
+    local modifiers="$2"
+    /usr/libexec/PlistBuddy -c "Delete :AppleSymbolicHotKeys:$id" "$PLIST" 2>/dev/null || true
+    /usr/libexec/PlistBuddy \
+        -c "Add :AppleSymbolicHotKeys:$id dict" \
+        -c "Add :AppleSymbolicHotKeys:$id:enabled bool true" \
+        -c "Add :AppleSymbolicHotKeys:$id:value dict" \
+        -c "Add :AppleSymbolicHotKeys:$id:value:type string standard" \
+        -c "Add :AppleSymbolicHotKeys:$id:value:parameters array" \
+        -c "Add :AppleSymbolicHotKeys:$id:value:parameters:0 integer 32" \
+        -c "Add :AppleSymbolicHotKeys:$id:value:parameters:1 integer 49" \
+        -c "Add :AppleSymbolicHotKeys:$id:value:parameters:2 integer $modifiers" \
+        "$PLIST"
+}
 
-# 新しい正しい構造を作成して一括挿入
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60 dict" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:enabled bool true" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value dict" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value:type string standard" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value:parameters array" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value:parameters:0 integer 32" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value:parameters:1 integer 49" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:60:value:parameters:2 integer 1048576" $PLIST
-
-# --------------------------------------------------
-# Key 64: Spotlight検索 -> Ctrl + Space (262144)
-# --------------------------------------------------
-# 一度既存の古い構造を削除してエラーを回避
-/usr/libexec/PlistBuddy -c "Delete :AppleSymbolicHotKeys:64" $PLIST 2>/dev/null
-
-# 新しい正しい構造を作成して一括挿入
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64 dict" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool true" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value dict" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:type string standard" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters array" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:0 integer 32" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:1 integer 49" $PLIST
-/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:2 integer 262144" $PLIST
-
-# Show Screen Mirroring in menu bar (always)
-defaults -currentHost write com.apple.controlcenter ScreenMirroring -int 18
-
-# Disable click desktop to show desktop
-defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
-
-# Disable natural scrolling for mouse
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Disable live conversion (Japanese input)
-defaults write com.apple.inputmethod.Kotoeri JIMPrefLiveConversionKey -bool false
+# 60: Select previous input source -> Cmd + Space
+set_hotkey 60 1048576
+# 64: Spotlight search -> Ctrl + Space
+set_hotkey 64 262144
 
 # Set timezone to Asia/Tokyo
 sudo systemsetup -settimezone Asia/Tokyo
+
+killall Dock Finder SystemUIServer 2>/dev/null || true
 
 echo "macOS defaults configured successfully"
 {{- end }}
