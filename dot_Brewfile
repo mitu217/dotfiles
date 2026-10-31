@@ -1,6 +1,4 @@
 # Shell & Terminal
-brew "zsh"
-brew "mosh"
 brew "chezmoi"
 brew "starship"
 cask "ghostty"
@@ -12,34 +10,22 @@ cask "visual-studio-code"
 # Git
 brew "git"
 brew "gh"
-brew "ghq"
-brew "pre-commit"
 cask "fork"
 
 # Languages & Runtimes
 brew "mise"
-brew "rust"
 brew "uv"
-brew "yarn"
 
 # Infrastructure
 brew "awscli"
-brew "saml2aws"
-cask "google-cloud-sdk"
+cask "gcloud-cli"
 cask "tailscale-app"
 
 # Docker
 cask "docker-desktop"
 
-# Database
-brew "mysql"
-
 # CLI Tools
-brew "bat"
-brew "direnv"
-brew "fzf"
 brew "wget"
-brew "mas"
 
 # Security
 cask "1password"
@@ -47,10 +33,6 @@ cask "1password-cli"
 
 # Applications
 cask "appcleaner"
-cask "deepl"
+cask "claude-code"
 cask "google-chrome"
 cask "raycast"
-
-# Android
-cask "android-studio"
-cask "android-commandlinetools"

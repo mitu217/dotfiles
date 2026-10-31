@@ -1,10 +1,2 @@
-# Settings for local binaries (claude, etc.)
-export PATH="$HOME/.local/bin:$PATH"
-
 # Settings for cargo
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Settings for golang
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$GOBIN:$PATH"
