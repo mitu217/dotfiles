@@ -22,7 +22,7 @@ This file is automatically loaded for all Claude Code sessions.
 
 ## Environment
 
-- Shell: Fish
+- Shell: Zsh
 - Terminal: Ghostty
 - Editor: Vim
 - Package Manager: Homebrew (macOS), chezmoi (dotfiles)
