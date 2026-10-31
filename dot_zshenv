@@ -1,2 +1,0 @@
-# Settings for cargo
-export PATH="$HOME/.cargo/bin:$PATH"
